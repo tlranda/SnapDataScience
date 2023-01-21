@@ -1,11 +1,11 @@
 date,my deck,player,locations,cards,outcome,cubes,bot behavior?,deck archetype,archetype certain
-1/20/2023,dino,koklok,"thehub,monsterisland,ruins","iceman,nightcrawler,mrfantastic,sunspot",opp retreat,1,no,cerebro-2,no
-1/20/2023,dino,RSN,"throneroom,muirisland,xmansion","domino,polaris,sera,wolfsbane,surfer",resolve,2,yes,surfer,yes
+1/20/2023,dino,koklok,"thehub,monsterisland,ruins","iceman,nightcrawler,misterfantastic,sunspot",opp retreat,1,no,cerebro-2,no
+1/20/2023,dino,RSN,"throneroom,muirisland,xmansion","domino,polaris,sera,wolfsbane,silversurfer",resolve,2,yes,surfer,yes
 1/20/2023,dino,OrionPax,"cloningvats,savageland,nidavellir","lockjaw,yellowjacket,armor,leech,doctordoom,giganto",resolve,8,no,lockjaw,yes
 1/20/2023,dino,Riey,"wakandanembassy,vibraniummines,theraft","agent13,yondu,groot,armor,greengoblin",opp retreat,1,no,reveals,no
 1/20/2023,dino,KynCal4488,"attilan,sinisterlondon,vibraniummines","hazmat,greengoblin,typhoidmary,sunspot,wolfsbane,ironheart",resolve,-2,no,hazmat,yes
 1/20/2023,dino,Nysrol,"theicebox,avengerscompound,jotunheim","nova,deathlok,wave,shehulk,killmonger",resolve,-2,no,deathwave,yes
-1/20/2023,dino,puff,"atlantis,ricketybridge,lechuguilla","nova,wolverine,sabertooth,killmonger,wave,death",resolve,-2,no,deathwave,yes
+1/20/2023,dino,puff,"atlantis,ricketybridge,lechuguilla","nova,wolverine,sabretooth,killmonger,wave,death",resolve,-2,no,deathwave,yes
 1/20/2023,dino,natalie,"novaroma,theicebox,wakanda","sunspot,jubilee,leader,vision,doctordoom",resolve,-2,no,bigstuff,no
 1/20/2023,dino,Tomnyo,"sanctumsanctorum,murderworld,sokovia","goose,zero,greengoblin,brood,titania,wolfsbane",retreat,-1,no,surfer,yes
 1/20/2023,dino,Wisk,"districtx,mirrordimension,lukesbar",greengoblin,resolve,4,no,unknown,no
@@ -18,10 +18,10 @@ date,my deck,player,locations,cards,outcome,cubes,bot behavior?,deck archetype,a
 1/20/2023,dino,Raukesh3mikee92,"xandar,fisktower,shadowland","blade,wong,colleenwing,nakia,swarm,dracula,hellcow,apocalypse,americachavez",resolve,2,no,discard,yes
 1/20/2023,dino,Fradwince240,"onslaughtscitadel,vormir,newyork","elektra,antman,blade,iceman,okoye,ironman,bishop,nightcrawler",resolve,4,yes,zoo,yes
 1/20/2023,dino,Arete,"onslaughtscitadel,sakaar,xandar","killmonger,buckybarnes,venom,venom,hulkbuster,sabretooth,carnage",resolve,-2,no,deathwave,yes
-1/20/2023,dino,Jorge,"wakandanembassy,asgard,avengerscompound","squirrelgirl,antman,mistyknight,wolfsbane,kazaar,thing,mistersinister",resolve,4,yes,patriotzoo,no
+1/20/2023,dino,Jorge,"wakandanembassy,asgard,avengerscompound","squirrelgirl,antman,mistyknight,wolfsbane,kazar,thething,mistersinister",resolve,4,yes,patriotzoo,no
 1/20/2023,dino,ThSam,"sanctumsanctorum,tinkerersworkshop,necrosha","invisiblewoman,shocker,debrii,onslaught",retreat,-1,no,patriot,yes
 1/20/2023,dino,Harry Axel,"darkdimension,monstermetropolis,novaroma","sunspot,armor,electro,wave,odin,leader",resolve,-2,no,leader,no
-1/20/2023,dino,kingkondo,"barwithnoname,shurislab,sewersystem","sentinel,bishop,sera,mysterio,angela,scarletwitch,nova",resolve,8,no,serazoo,yes
+1/20/2023,dino,kingkondo,"thebarwithnoname,shurislab,sewersystem","sentinel,bishop,sera,mysterio,angela,scarletwitch,nova",resolve,8,no,serazoo,yes
 1/20/2023,dino,Fixfjx,"centralpark,sinisterlondon,jotunheim","nova,buckybarnes,deathlok,killmonger,wave",opp retreat,4,no,deathwave,yes
 1/20/2023,dino,Bobastrazi,"olympia,limbo,crimsoncosmos","morbius,lockjaw,blade,swordmaster,ladysif,apocalypse,moonknight,dracula,hellcow,swarm",resolve,-2,no,discard,yes
 1/20/2023,dino,Xissco,"grandcentral,hala,morag","lizard,electro,vision,magneto,odin",opp retreat,1,no,ramp,no

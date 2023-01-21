@@ -5,6 +5,49 @@ from pprint import pprint,pformat
 
 LOC_KEYS = ['loc:left','loc:middle','loc:right']
 
+# Uses reference files to find nice replacements for displaying strings vs their CSV equivalent
+class NiceName:
+	def __init__(self):
+		self.initialized = False
+		self.references = {'locations': 'all_locations.json',
+						   'decks': 'all_decks.json',
+						   'cards': 'all_cards.json',}
+		self.unniceable = []
+
+	def initialize(self):
+		import json
+		import pdb
+		pdb.set_trace()
+		self.reversible = []
+		for k,v in self.references.items():
+			try:
+				setattr(self,k,json.load(open(v,'r')))
+			except IOError:
+				print(f"WARNING: NiceNames failed to load {k} (from {v})")
+			else:
+				setattr(self,'reverse_'+k,dict((v,k) for (k,v) in getattr(self,k).items()))
+				self.reversible.append(k)
+		del json
+		self.initialized = True
+
+	def nice(self, string):
+		if not self.initialized:
+			return string
+		else:
+			for k in self.reversible:
+				reverse_dict = getattr(self,'reverse_'+k)
+				if string in reverse_dict.keys():
+					return reverse_dict[string]
+			if string not in self.unniceable:
+				print(f"WARNING: Could not nice-ify: {string}")
+				self.unniceable.append(string)
+			return string
+
+	def __call__(self, string):
+		return self.nice(string)
+
+nice = NiceName()
+
 # Take CSV locations and split into Left Right and Middle locations
 def location_split(data,delim=',',padding='PADDING'):
 	locations = data['locations'].tolist()
@@ -51,7 +94,7 @@ def locationAnalyzer(data,args):
 	for k in LOC_KEYS:
 		insight[k] = []
 	for uniq in unique_locations:
-		insight['location'].append(uniq)
+		insight['location'].append(nice(uniq))
 		indices = np.where(stacked_locations==uniq)[0]
 		insight['n_occur'].append(len(indices))
 		insight['appearance_rate'].append(len(indices)/N_LOCS)
@@ -110,7 +153,7 @@ def deckAnalyzer(data,args):
 		insight['losestreaks'] = streak_equals(np.asarray(outcomes), [1,3])
 		insight['botrate'] = filtered['bot behavior?'].tolist().count('yes')/DECK_GAMES
 		insight['botcubes'] = filtered['cubes'].iloc[filtered[filtered['bot behavior?']=='yes'].index].sum()
-		matchups[my_deck] = insight
+		matchups[nice(my_deck)] = insight
 	return matchups
 
 def cardAnalyzer(data,args):
@@ -128,7 +171,7 @@ def cardAnalyzer(data,args):
 		info['appearance_rate'] = info['appearances']/TOTAL_GAMES
 		info['archetypes'] = sorted(set(data['deck archetype'].iloc[game_idx]))
 		info['bot_likelihood'] = len(set(game_idx)-set(data[data['bot behavior?']=='no'].index))/info['appearances']
-		insight[card] = info
+		insight[nice(card)] = info
 	# Supply some sort orders
 	insight['SORT_NAME'] = [k for k in insight.keys()]
 	# argsort([insight[c]['appearances'] for c in insight.keys()])[::-1] doesn't preserve alphabetical order
@@ -145,6 +188,8 @@ def initial_load(args):
 	data = pd.read_csv(args.file)
 	data = location_split(data)
 	data = cards_split(data)
+	if args.nice_names:
+		nice.initialize()
 	return data
 
 def parse(prs,args=None):
@@ -158,6 +203,7 @@ def build():
 	prs.add_argument('--padding',default='PADDING',type=str,help="Padding token for locations and cards")
 	prs.add_argument('--card-sort',choices=['SORT_NAME','SORT_APPEARANCES'],default='SORT_APPEARANCES',help="Order for card data")
 	prs.add_argument('--limit-cards',default=None,type=int,help="Maximum number of cards to display (default: ALL)")
+	prs.add_argument('--nice-names',action='store_true',help="Replace location and card names with nicer versions when specified")
 	return prs
 
 def main(args):
