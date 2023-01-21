@@ -16,8 +16,6 @@ class NiceName:
 
 	def initialize(self):
 		import json
-		import pdb
-		pdb.set_trace()
 		self.reversible = []
 		for k,v in self.references.items():
 			try:
