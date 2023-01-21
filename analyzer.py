@@ -91,9 +91,13 @@ def locationAnalyzer(data,args):
 			   }
 	for k in LOC_KEYS:
 		insight[k] = []
-	for uniq in unique_locations:
-		insight['location'].append(nice(uniq))
+	if args.location_limit is None:
+		args.location_limit = len(unique_locations)
+	for limit,uniq in zip(range(args.location_limit),unique_locations):
 		indices = np.where(stacked_locations==uniq)[0]
+		if args.repeated_locations and len(indices) == 1:
+			continue
+		insight['location'].append(nice(uniq))
 		insight['n_occur'].append(len(indices))
 		insight['appearance_rate'].append(len(indices)/N_LOCS)
 		game_ids, game_mods = np.divmod(indices,3)
@@ -200,7 +204,9 @@ def build():
 	prs.add_argument('--file',required=True,help="CSV to analyze")
 	prs.add_argument('--padding',default='PADDING',type=str,help="Padding token for locations and cards")
 	prs.add_argument('--card-sort',choices=['SORT_NAME','SORT_APPEARANCES'],default='SORT_APPEARANCES',help="Order for card data")
-	prs.add_argument('--limit-cards',default=None,type=int,help="Maximum number of cards to display (default: ALL)")
+	prs.add_argument('--repeated-locations',action='store_true',help="Only show locations that have occurred more than once")
+	prs.add_argument('--location-limit',default=None,type=int,help="Maximum number of locations to display (default: ALL)")
+	prs.add_argument('--card-limit',default=None,type=int,help="Maximum number of cards to display (default: ALL)")
 	prs.add_argument('--nice-names',action='store_true',help="Replace location and card names with nicer versions when specified")
 	return prs
 
@@ -223,9 +229,9 @@ def main(args):
 	sort = card_sortings[args.card_sort]
 	if args.card_sort != 'SORT_NAME':
 		sort = np.asarray(card_sortings['SORT_NAME'])[sort]
-	if args.limit_cards is None:
-		args.limit_cards = len(card_insight.keys())
-	for limit in range(args.limit_cards):
+	if args.card_limit is None:
+		args.card_limit = len(card_insight.keys())
+	for limit in range(args.card_limit):
 		k = sort[limit]
 		v = card_insight[k]
 		print(k)
